@@ -26,30 +26,32 @@ npm install -g noseyparker-compact
 ## Usage
 
 ```bash
-npc [-f csv|json] [-i file] [file]
-# or
-npc [-f csv|json] < file
+npc -f <format> (-i <file> | < file) [-o <file>]
 ```
 
 ### Options
-- `-f, --format`  Output format (default: json)
-- `-i, --input`   Input file (optional)
+- `-f, --format`  Output format (csv|json) [required]
+- `-i, --input`   Input file [required unless using stdin]
+- `-o, --output`  Output file [optional, defaults to stdout]
 
 ### Examples
 
 ```bash
-# Using npx (no installation required)
-npx noseyparker-compact report.json
-npx noseyparker-compact -f csv < report.json
-
 # Using stdin
-noseyparker report -f json | npc -f csv
-cat report.json | npc -f json
+cat report.json | npc -f csv
+cat report.json | npc -f json -o compact.json
 
-# Using file argument
-npc -f csv report.json
-npc -i report.json -f json
-npc report.json
+# Directly using noseyparker
+noseyparker report -f json | npc -f csv
+noseyparker report -f json | npc -f json
+
+# Using input file
+npc -f csv -i report.json
+npc -f json -i report.json -o output.json
+
+# Using npx (no installation required)
+npx noseyparker-compact -f csv -i report.json
+cat report.json | npx noseyparker-compact -f json
 ```
 
 ## License

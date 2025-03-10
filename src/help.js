@@ -1,24 +1,15 @@
-export const ansi = new Proxy(
-  { f: 3, b: 4 },
-  {
-    get:
-      (t, [m, c]) =>
-      (...a) =>
-        process.stdout.write(`\x1b[${t[m]}${c}m${a.join(' ')}\x1b[0m\n`),
-  },
-)
-
-export const usage = () =>
+export default () =>
   console.error(`
-Usage: npc [-f csv|json] [-i file] [file]
-   or: npc [-f csv|json] < file
+Usage: npc -f <format> (-i <file> | < file) [-o <file>]
 
 Options:
-  -f, --format    Output format (default: json)
-  -i, --input     Input file (optional)
+  -f, --format    Output format (csv|json) [required]
+  -i, --input     Input file [required unless using stdin]
+  -o, --output    Output file [optional, defaults to stdout]
 
 Examples:
-  npc -f csv < report.json
-  npc -f json -i report.json
-  npc report.json
+  npc -f csv -i report.json
+  npc -f json -i report.json -o compact.json
+  cat report.json | npc -f csv
+  noseyparker report -f json | npc -f csv
 `)
