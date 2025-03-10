@@ -1,6 +1,6 @@
 const reduceProvenance = provenance =>
   provenance.reduce(
-    (acc, { kind, repo_path, first_commit: { blob_path, commit_metadata } }) => ({
+    (acc, { kind, repo_path, first_commit: { blob_path, commit_metadata } = {} }) => ({
       kind,
       repo_path,
       blob_path,
