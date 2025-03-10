@@ -1,7 +1,7 @@
 {
   "name": "noseyparker-compact",
   "description": "Compact report formatters for noseyparker",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "./src/index.js",
   "type": "module",
   "sideEffects": false,

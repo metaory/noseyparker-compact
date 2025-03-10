@@ -54,5 +54,33 @@ npx noseyparker-compact -f csv -i report.json
 cat report.json | npx noseyparker-compact -f json
 ```
 
+### Structure
+
+```jsonc
+[
+  {
+    "rule_name": "Generic Password",
+    "mime_essence": "text/plain",
+    "kind": "git_repo",
+    "repo_path": "./xxxxxxxxxxxx/.git",
+    "blob_path": "xxxxxxxxx/xxxxxxxxxxxxxxxx/xxxxxx.xx",
+    "commit_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "committer_name": "John",
+    "committer_email": "John.Doe@acm.com",
+    "committer_timestamp": "9999999999 +1000",
+    "author_name": "John",
+    "author_email": "John.Doe@acm.com",
+    "author_timestamp": "8888888888 +1000",
+    "message": "xxxx xxxxxxx, xxxxxx xxxxxxx, xxxxx xxxxxxxxx xxx xxxxxxxx",
+    "source_span": "25@28:25@59",
+    "offset_span": "531:563",
+    "snippet_after": "# 'xxxxxxxx':\"xxxxxxxxxxxxxxxxxx\", # 'xxxx':'xxxxxxxxxxxxxxx', 'xxxx':\"xxxxxxxxxxxxxxxx\", 'xxxxxxxx':\"xxxxxxxxxxxxxxxxxxxx\"",
+    "snippet_matching": "xxxxxxxx':\"xxxxxxxxxxxxxxxxxxxx\"",
+    "snippet_before": "xxxxxx = { 'xxxxxxx':\"xxxxxxx.xxxxxxxxxxxxxx.xxxxx\", 'xxxxxxxxx':\"xxxxxxxxxx\", 'xxxxxx':\"xxxxx\", # 'xxxx': \"xxxxxxxxxxxxxxx\""
+  },
+  // ...
+]
+```
+
 ## License
 [MIT](LICENSE)

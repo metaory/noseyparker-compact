@@ -4,6 +4,7 @@ import { argv, stdin, stdout } from 'node:process'
 import { readFile, writeFile } from 'node:fs/promises'
 import { Readable } from 'node:stream'
 import usage from './help.js'
+import reducer from './reducer.js'
 
 const fail = err => {
   console.error('Error:', err?.message || err)
@@ -20,16 +21,13 @@ const args = argv.slice(2).reduce((o, v, i, a) => {
   return o
 }, {})
 
-// Validate required format
 const format = args.f || args.format || fail('format (-f) is required')
 if (!['json', 'csv'].includes(format)) fail(`invalid format: ${format}`)
 
-// Validate input source
 const input = args.i || args.input
 if (!stdin.isTTY && input) fail('cannot use both stdin and input file')
 if (stdin.isTTY && !input) fail('input (-i) is required when not using stdin')
 
-// Setup input/output streams
 const read = stdin.isTTY
   ? readFile(input, 'utf8')
   : Readable.from(stdin).reduce((a, c) => a + c, '')
@@ -37,5 +35,12 @@ const read = stdin.isTTY
 const output = args.o || args.output
 const write = data => (output ? writeFile(output, data) : stdout.write(`${data}\n`))
 
-// For now, just pipe the input to output
-read.then(write).catch(fail)
+const make = reduced =>
+  format === 'json'
+    ? JSON.stringify(reduced)
+    : reduced.reduce(
+        (acc, cur) => acc + Object.values(cur).join('","'),
+        Object.keys(reduced.at(0)).join() + '\n',
+      )
+
+read.then(JSON.parse).then(reducer).then(make).then(write).catch(fail)
