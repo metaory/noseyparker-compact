@@ -1,0 +1,24 @@
+{
+  "name": "noseyparker-compact",
+  "description": "Compact report formatters for noseyparker",
+  "version": "0.1.0",
+  "main": "./src/index.js",
+  "type": "module",
+  "sideEffects": false,
+  "bugs": "https://github.com/metaory/noseyparker-compact/issues",
+  "homepage": "https://github.com/metaory/noseyparker-compact#readme",
+  "repository": "git+https://github.com/metaory/noseyparker-compact.git",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "bin": {
+    "noseyparker-compact": "./src/index.js",
+    "npc": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "LICENSE"
+  ],
+  "author": "metaory <metaory@gmail.com>",
+  "license": "MIT"
+}

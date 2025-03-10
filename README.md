@@ -1,10 +1,15 @@
-# 🚧 noseyparker-compact
+<div align="center">
+    <b>noseyparker-compact</b>
+    <br>
+    <img src=".github/assets/block.png" alt="noseyparker-compact" width="40%" />
+    <br>
+    <b>compact report formatters for</b>
+    <a href="https://github.com/praetorian-inc/noseyparker">noseyparker</a>
+</div>
 
-Compact formatters for [noseyparker](https://github.com/praetorian-inc/noseyparker) reports
 
 ---
 
-## Description
 
 `noseyparker-compact` is a lightweight CLI tool
 that transforms verbose `noseyparker` JSON reports
@@ -29,7 +34,7 @@ npm install -g noseyparker-compact
 
 ## Synopsis
 
-```
+```ini
 noseyparker-compact [-i|--input] [-o|--output] [-f|--format]
 ```
 
