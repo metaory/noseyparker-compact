@@ -1,89 +1,56 @@
 <div align="center">
-    <b>noseyparker-compact</b>
-    <br>
-    <img src=".github/assets/block.png" alt="noseyparker-compact" width="40%" />
-    <br>
-    <b>compact report formatters for</b>
+  <h3><code>noseyparker-compact</code></h3>
+  <img src=".github/assets/block.png" alt="noseyparker-compact" width="30%" />
+  <br>
+  <h5>
+    compact report formatters for
     <a href="https://github.com/praetorian-inc/noseyparker">noseyparker</a>
+  </h5>
+  <div>
+    <a href="#install">Install</a> |
+    <a href="#usage">Usage</a> |
+    <a href="#license">License</a>
+  </div>
+  <hr>
+  <p>transforms verbose <code>noseyparker</code> <kbd>JSON</kbd> reports</p>
+  <p>into concise summaries in <kbd>JSON</kbd> or <kbd>CSV</kbd> format</p>
 </div>
 
 
----
-
-
-`noseyparker-compact` is a lightweight CLI tool
-that transforms verbose `noseyparker` JSON reports
-into concise, gist-style summaries in JSON or CSV format
-
-It accepts input via stdin or a file
-and outputs the processed report to stdout or a specified file
-
----
-
-## Installation
+## Install
 
 ```bash
-# Run directly with npx
-npx noseyparker-compact --help
-
-# Or install globally
 npm install -g noseyparker-compact
 ```
-
----
-
-## Synopsis
-
-```ini
-noseyparker-compact [-i|--input] [-o|--output] [-f|--format]
-```
-
----
 
 ## Usage
 
 ```bash
-# Generate a compact summary from a noseyparker report
-noseyparker report -f json | npx noseyparker-compact -f json
-noseyparker report -f json | npx noseyparker-compact -f csv
-
-# Save Output to a File
-noseyparker report -f json | npx noseyparker-compact -f json -o compact.json
-noseyparker report -f json | npx noseyparker-compact -f csv -o compact.csv
-
-# Process an Existing Report File
-npx noseyparker-compact -i noseyparker-report.json -f json -o compact.json
-npx noseyparker-compact -i noseyparker-report.json -f csv -o compact.csv
+npc [-f csv|json] [-i file] [file]
+# or
+npc [-f csv|json] < file
 ```
 
----
+### Options
+- `-f, --format`  Output format (default: json)
+- `-i, --input`   Input file (optional)
 
-### Example Output
+### Examples
 
-#### Compact JSON
+```bash
+# Using npx (no installation required)
+npx noseyparker-compact report.json
+npx noseyparker-compact -f csv < report.json
 
-```json
-{
-  "findings": [
-    {
-      "secret_type": "AWS Access Key",
-      "file": "config.json",
-      "line": 12,
-      "match": "AKIA***************"
-    }
-  ]
-}
+# Using stdin
+noseyparker report -f json | npc -f csv
+cat report.json | npc -f json
+
+# Using file argument
+npc -f csv report.json
+npc -i report.json -f json
+npc report.json
 ```
 
-#### Compact CSV
-
-```csv
-secret_type,file,line,match
-AWS Access Key,config.json,12,AKIA***************
-```
-
----
-
-License
--------
+## License
 [MIT](LICENSE)

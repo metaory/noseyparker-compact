@@ -19,6 +19,17 @@
     "src",
     "LICENSE"
   ],
+  "keywords": [
+    "noseyparker",
+    "security",
+    "report",
+    "formatter",
+    "json",
+    "csv"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "author": "metaory <metaory@gmail.com>",
   "license": "MIT"
 }
