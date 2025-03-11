@@ -46,4 +46,7 @@ const reduceMatch = ({
   ...reduceSnippet(snippet),
 })
 
-export default data => data.reduce((acc, { matches }) => [...acc, ...matches.map(reduceMatch)], [])
+export default data =>
+  data
+    .filter(({ statuses: [status] }) => status === 'accept')
+    .reduce((acc, { matches }) => [...acc, ...matches.map(reduceMatch)], [])
